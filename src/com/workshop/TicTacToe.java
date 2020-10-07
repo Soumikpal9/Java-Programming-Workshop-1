@@ -22,16 +22,16 @@ public class TicTacToe {
 		char[] board = createBoard();
 		System.out.println("Enter the letter you want to pick. Choose between 'X' or 'O' : ");
 		char letter = chooseLetter();
-		char you = ' ';
-		char comp = ' ';
+		char player = ' ';
+		char computer = ' ';
 		if(letter == 'X') {
-			you = 'X';
-			comp = 'O'; 
+			player = 'X';
+			computer = 'O'; 
 		}
 		else {
-			comp = 'X';
-			you = 'O';
+			computer = 'X';
+			player = 'O';
 		}
-		System.out.println("You chose : " + you + "\nComputer chose : " + comp);
+		System.out.println("Player Mark : " + player + "\nComputer Mark : " + computer);
 	}
 }
