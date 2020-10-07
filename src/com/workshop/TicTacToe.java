@@ -5,6 +5,8 @@ public class TicTacToe {
 	public static final int PLAYER = 1;
 	public static final int COMPUTER = 2;
 	
+	public static List<Integer> positions = new ArrayList<>();
+	
 	static Scanner sc = new Scanner(System.in);
 	public static char[] createBoard() {
 		char[] board = new char[10];
@@ -42,13 +44,24 @@ public class TicTacToe {
 		}
 	}
 	
-	public static void toss() {
+	public static String toss() {
 		int toss = ((int)Math.floor(Math.random() * 10) % 2) + 1;
 		if(toss == PLAYER) {
 			System.out.println("Player will make the move first.");
+			return "Player";
 		}
 		else {
 			System.out.println("Computer will make the move first.");
+			return "Computer";
+		}
+	}
+	
+	public static String currentStatus() {
+		if(positions.containsAll(Arrays.asList(1,2,3)) || positions.containsAll(Arrays.asList(1,4,7)) || positions.containsAll(Arrays.asList(1,5,9)) || positions.containsAll(Arrays.asList(2,5,8)) || positions.containsAll(Arrays.asList(3,6,9)) || positions.containsAll(Arrays.asList(4,5,6)) || positions.containsAll(Arrays.asList(7,8,9)) || positions.containsAll(Arrays.asList(7,5,3))) {
+			return "Player wins";
+		}
+		else {
+			return "It's a tie";
 		}
 	}
 	
@@ -56,23 +69,33 @@ public class TicTacToe {
 		System.out.println("Welcome to Tic Tac Toe Game!!!");
 		
 		char[] board = createBoard();
-		System.out.println("Enter the letter you want to pick. Choose between 'X' or 'O' : ");
-		char letter = chooseLetter();
-		char player = ' ';
-		char computer = ' ';
-		if(letter == 'X') {
-			player = 'X';
-			computer = 'O'; 
+		
+		String toss = toss();
+		if(toss == "Player") {
+			System.out.println("Enter the letter you want to pick. Choose between 'X' or 'O' : ");
+			char letter = chooseLetter();
+			char player = ' ';
+			char computer = ' ';
+			if(letter == 'X') {
+				player = 'X';
+				computer = 'O'; 
+			}
+			else {
+				computer = 'X';
+				player = 'O';
+			}
+			System.out.println("Player Mark : " + player + "\nComputer Mark : " + computer);
+			for(int i = 0; i < 9; i++) {
+				if(i >= 3) {
+					System.out.println(currentStatus());
+				}
+				System.out.println("Enter the position you want to fill with your mark (1-9) : ");
+				int a = sc.nextInt();
+				fillMark(board, a, player);
+				positions.add(a);
+				showBoard(board);
+			}
 		}
-		else {
-			computer = 'X';
-			player = 'O';
-		}
-		System.out.println("Player Mark : " + player + "\nComputer Mark : " + computer);
-		toss();
-		System.out.println("Enter the position you want to fill with your mark (1-9) : ");
-		int a = sc.nextInt();
-		fillMark(board, a, player);
-		showBoard(board);
+		
 	}
 }
