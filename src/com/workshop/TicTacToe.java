@@ -17,16 +17,15 @@ public class TicTacToe {
 	}
 	
 	public static void showBoard(char[] board) {
-		int row = (board.length - 1)/3;
-		int col = (board.length - 1)/3;
-		
-		for(int i = 0; i < row; i++) {
-			for(int j = 0; j < col; j++) {
+		for(int i = 1; i < board.length; i+=3) {
+			for(int j = i; j < i+3; j++) {
 				System.out.print("|   ");
 				System.out.print(board[j]);
 				System.out.print("   |");
 			}
-			System.out.println("\n\n");
+			System.out.println();
+			System.out.println("___________________________");
+			System.out.println();
 		}
 	}
 	
