@@ -5,7 +5,7 @@ public class TicTacToe {
 	static Scanner sc = new Scanner(System.in);
 	public static char[] createBoard() {
 		char[] board = new char[10];
-		for(int i = 1; i < board.length; i++) {
+		for(int i = 0; i < board.length; i++) {
 			board[i] = ' ';
 		}
 		return board;
@@ -14,6 +14,20 @@ public class TicTacToe {
 	public static char chooseLetter() {
 		char letter = sc.next().charAt(0);
 		return letter;
+	}
+	
+	public static void showBoard(char[] board) {
+		int row = (board.length - 1)/3;
+		int col = (board.length - 1)/3;
+		
+		for(int i = 0; i < row; i++) {
+			for(int j = 0; j < col; j++) {
+				System.out.print("|   ");
+				System.out.print(board[j]);
+				System.out.print("   |");
+			}
+			System.out.println("\n\n");
+		}
 	}
 	
 	public static void main(String[] args) {
@@ -33,5 +47,6 @@ public class TicTacToe {
 			player = 'O';
 		}
 		System.out.println("Player Mark : " + player + "\nComputer Mark : " + computer);
+		showBoard(board);
 	}
 }
