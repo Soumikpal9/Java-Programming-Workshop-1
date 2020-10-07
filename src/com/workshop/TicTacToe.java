@@ -26,7 +26,11 @@ public class TicTacToe {
 			System.out.println();
 			System.out.println("___________________________");
 			System.out.println();
-		}
+		} 
+	}
+	
+	public static void fillMark(char[] board, int a, char letter) {
+		board[a] = letter;
 	}
 	
 	public static void main(String[] args) {
@@ -46,6 +50,9 @@ public class TicTacToe {
 			player = 'O';
 		}
 		System.out.println("Player Mark : " + player + "\nComputer Mark : " + computer);
+		System.out.println("Enter the position you want to fill with your mark : ");
+		int a = sc.nextInt();
+		fillMark(board, a, player);
 		showBoard(board);
 	}
 }
