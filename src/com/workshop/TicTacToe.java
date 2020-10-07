@@ -32,6 +32,6 @@ public class TicTacToe {
 			comp = 'X';
 			you = 'O';
 		}
-		
+		System.out.println("You chose : " + you + "\nComputer chose : " + comp);
 	}
 }
