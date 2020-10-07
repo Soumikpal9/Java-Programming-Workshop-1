@@ -30,7 +30,13 @@ public class TicTacToe {
 	}
 	
 	public static void fillMark(char[] board, int a, char letter) {
-		board[a] = letter;
+		if(board[a] == ' ') {
+			System.out.println("Position is free : ");
+			board[a] = letter;
+		}
+		else {
+			System.out.println("Position is occupied");
+		}
 	}
 	
 	public static void main(String[] args) {
@@ -50,7 +56,7 @@ public class TicTacToe {
 			player = 'O';
 		}
 		System.out.println("Player Mark : " + player + "\nComputer Mark : " + computer);
-		System.out.println("Enter the position you want to fill with your mark : ");
+		System.out.println("Enter the position you want to fill with your mark (1-9) : ");
 		int a = sc.nextInt();
 		fillMark(board, a, player);
 		showBoard(board);
