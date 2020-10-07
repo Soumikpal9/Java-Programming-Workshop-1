@@ -2,6 +2,9 @@ package com.workshop;
 import java.util.*;
 
 public class TicTacToe {
+	public static final int PLAYER = 1;
+	public static final int COMPUTER = 2;
+	
 	static Scanner sc = new Scanner(System.in);
 	public static char[] createBoard() {
 		char[] board = new char[10];
@@ -39,6 +42,16 @@ public class TicTacToe {
 		}
 	}
 	
+	public static void toss() {
+		int toss = ((int)Math.floor(Math.random() * 10) % 2) + 1;
+		if(toss == PLAYER) {
+			System.out.println("Player will make the move first.");
+		}
+		else {
+			System.out.println("Computer will make the move first.");
+		}
+	}
+	
 	public static void main(String[] args) {
 		System.out.println("Welcome to Tic Tac Toe Game!!!");
 		
@@ -56,6 +69,7 @@ public class TicTacToe {
 			player = 'O';
 		}
 		System.out.println("Player Mark : " + player + "\nComputer Mark : " + computer);
+		toss();
 		System.out.println("Enter the position you want to fill with your mark (1-9) : ");
 		int a = sc.nextInt();
 		fillMark(board, a, player);
