@@ -26,7 +26,9 @@ public class TicTacToe {
 				System.out.print(board[j]);
 				System.out.print("   |");
 			}
-			System.out.println("\n\n");
+			System.out.println();
+			System.out.println("___________________________");
+			System.out.println();
 		}
 	}
 	
