@@ -128,7 +128,24 @@ public class TicTacToe {
 		else if(fillMark(9)) {
 			return 9;
 		}
-		else return 0;
+		else if(fillMark(5)) {
+			return 5;
+		}
+		else {
+			if(fillMark(2)) {
+				return 2;
+			}
+			else if(fillMark(4)) {
+				return 4;
+			}
+			else if(fillMark(6)) {
+				return 6;
+			}
+			else if(fillMark(8)) {
+				return 8;
+			}
+			else return 0;
+		}
 	}
 	
 	public static void main(String[] args) {
