@@ -153,176 +153,193 @@ public class TicTacToe {
 		
 		board = createBoard();
 		
-		String toss = toss();
-		if(toss == "Player") {
-			int flag = 0;
-			System.out.println("Enter the letter you want to pick. Choose between 'X' or 'O' : ");
-			char letter = chooseLetter();
-			char player = ' ';
-			char computer = ' ';
-			if(letter == 'X') {
-				player = 'X';
-				computer = 'O'; 
-			}
-			else {
-				computer = 'X';
-				player = 'O';
-			}
-			System.out.println("Player Mark : " + player + "\nComputer Mark : " + computer);
-
-			int i = 0, j = 0, f = 0;
-			while(i < 5 && j < 5) {
-				if(flag == 0) {
-					if(f != 1) {
-						System.out.println("Enter the position you want to fill with your mark (1-9) : ");
-						if(j >= 3) {
-							System.out.println(currentStatusComputer());
-							if(currentStatusComputer() == "Computer wins") {
-								f = 1;
-								break;
-							}
-						}
-						int a = sc.nextInt();
-						if(fillMark(a)) {
-							board[a] = player;
-							positionsPlayer.add(a);
-							showBoard();
-							flag = 1;
-							i++;
-						}
-						else {
-							flag = 0;
-						}
-					}
+		boolean check = true;
+		while(check) {
+			String toss = toss();
+			if(toss == "Player") {
+				int flag = 0;
+				System.out.println("Enter the letter you want to pick. Choose between 'X' or 'O' : ");
+				char letter = chooseLetter();
+				char player = ' ';
+				char computer = ' ';
+				if(letter == 'X') {
+					player = 'X';
+					computer = 'O'; 
 				}
 				else {
-					if(f != 1) {
-						System.out.println("Computer's turn : ");
-						if(i >= 3) {
-							System.out.println(currentStatusPlayer());
-							if(currentStatusPlayer() == "Player wins") {
-								f = 1;
-								break;
-							}
-						}
-						if(j >= 1) {
-							int a = getWinMove();
-							if(a == 0) {
-								a = cornerMove();
-								if(a == 0) {
-									a = ((int)Math.floor(Math.random() * 10) % 9) + 1;
+					computer = 'X';
+					player = 'O';
+				}
+				System.out.println("Player Mark : " + player + "\nComputer Mark : " + computer);
+
+				int i = 0, j = 0, f = 0;
+				while(i < 5 && j < 5) {
+					if(flag == 0) {
+						if(f != 1) {
+							System.out.println("Enter the position you want to fill with your mark (1-9) : ");
+							if(j >= 3) {
+								System.out.println(currentStatusComputer());
+								if(currentStatusComputer() == "Computer wins") {
+									f = 1;
+									break;
 								}
 							}
-							board[a] = computer;
-							positionsComputer.add(a);
-							showBoard();
-							flag = 0;
-							j++;
-						}
-						else{
-							int a = ((int)Math.floor(Math.random() * 10) % 9) + 1;
+							int a = sc.nextInt();
 							if(fillMark(a)) {
+								board[a] = player;
+								positionsPlayer.add(a);
+								showBoard();
+								flag = 1;
+								i++;
+							}
+							else {
+								flag = 0;
+							}
+						}
+					}
+					else {
+						if(f != 1) {
+							System.out.println("Computer's turn : ");
+							if(i >= 3) {
+								System.out.println(currentStatusPlayer());
+								if(currentStatusPlayer() == "Player wins") {
+									f = 1;
+									break;
+								}
+							}
+							if(j >= 1) {
+								int a = getWinMove();
+								if(a == 0) {
+									a = cornerMove();
+									if(a == 0) {
+										a = ((int)Math.floor(Math.random() * 10) % 9) + 1;
+									}
+								}
 								board[a] = computer;
 								positionsComputer.add(a);
 								showBoard();
 								flag = 0;
 								j++;
 							}
-							else {
-								flag = 1;
+							else{
+								int a = ((int)Math.floor(Math.random() * 10) % 9) + 1;
+								if(fillMark(a)) {
+									board[a] = computer;
+									positionsComputer.add(a);
+									showBoard();
+									flag = 0;
+									j++;
+								}
+								else {
+									flag = 1;
+								}
 							}
 						}
 					}
 				}
-			}
-			if(f == 0) {
-				System.out.println("It's a tie");
-			}
-		}
-		else {
-			int flag = 1;
-			System.out.println("Computer is choosing it's mark");
-			int mark = ((int)Math.floor(Math.random() * 10) % 2) + 1;
-			char player = ' ';
-			char computer = ' ';
-			if(mark == 1) {
-				computer = 'X';
-				player = 'O';
+				if(f == 0) {
+					System.out.println("It's a tie");
+				}
 			}
 			else {
-				player = 'X';
-				computer = 'O';
-			}
-			System.out.println("Player Mark : " + player + "\nComputer Mark : " + computer);
-			
-			int i = 0, j = 0, f = 0;
-			while(i < 5 && j < 5) {
-				if(flag == 1) {
-					if(f != 1) {
-						System.out.println("Computer's turn : ");
-						if(i >= 3) {
-							System.out.println(currentStatusPlayer());
-							if(currentStatusPlayer() == "Player wins") {
-								f = 1;
-								break;
-							}
-						}
-						if(j > 1) {
-							int a = getWinMove();
-							if(a == 0) {
-								a = cornerMove();
-								if(a == 0) {
-									a = ((int)Math.floor(Math.random() * 10) % 9) + 1;
+				int flag = 1;
+				System.out.println("Computer is choosing it's mark");
+				int mark = ((int)Math.floor(Math.random() * 10) % 2) + 1;
+				char player = ' ';
+				char computer = ' ';
+				if(mark == 1) {
+					computer = 'X';
+					player = 'O';
+				}
+				else {
+					player = 'X';
+					computer = 'O';
+				}
+				System.out.println("Player Mark : " + player + "\nComputer Mark : " + computer);
+				
+				int i = 0, j = 0, f = 0;
+				while(i < 5 && j < 5) {
+					if(flag == 1) {
+						if(f != 1) {
+							System.out.println("Computer's turn : ");
+							if(i >= 3) {
+								System.out.println(currentStatusPlayer());
+								if(currentStatusPlayer() == "Player wins") {
+									f = 1;
+									break;
 								}
 							}
-							board[a] = computer;
-							positionsComputer.add(a);
-							showBoard();
-							flag = 0;
-							j++;
-						}
-						else{
-							int a = ((int)Math.floor(Math.random() * 10) % 9) + 1;
-							if(fillMark(a)) {
+							if(j > 1) {
+								int a = getWinMove();
+								if(a == 0) {
+									a = cornerMove();
+									if(a == 0) {
+										a = ((int)Math.floor(Math.random() * 10) % 9) + 1;
+									}
+								}
 								board[a] = computer;
 								positionsComputer.add(a);
 								showBoard();
 								flag = 0;
 								j++;
 							}
-							else {
+							else{
+								int a = ((int)Math.floor(Math.random() * 10) % 9) + 1;
+								if(fillMark(a)) {
+									board[a] = computer;
+									positionsComputer.add(a);
+									showBoard();
+									flag = 0;
+									j++;
+								}
+								else {
+									flag = 1;
+								}
+							}
+						}
+					}
+					else{
+						if(f != 1) {
+							System.out.println("Enter the position you want to fill with your mark (1-9) : ");
+							if(j >= 3) {
+								System.out.println(currentStatusComputer());
+								if(currentStatusComputer() == "Computer wins") {
+									f = 1;
+									break;
+								}
+							}
+							int a = sc.nextInt();
+							if(fillMark(a)) {
+								board[a] = player;
+								positionsPlayer.add(a);
+								showBoard();
 								flag = 1;
+								i++;
+							}
+							else {
+								flag = 0;
 							}
 						}
 					}
 				}
-				else{
-					if(f != 1) {
-						System.out.println("Enter the position you want to fill with your mark (1-9) : ");
-						if(j >= 3) {
-							System.out.println(currentStatusComputer());
-							if(currentStatusComputer() == "Computer wins") {
-								f = 1;
-								break;
-							}
-						}
-						int a = sc.nextInt();
-						if(fillMark(a)) {
-							board[a] = player;
-							positionsPlayer.add(a);
-							showBoard();
-							flag = 1;
-							i++;
-						}
-						else {
-							flag = 0;
-						}
-					}
+				if(f == 0) {
+					System.out.println("It's a tie");
 				}
 			}
-			if(f == 0) {
-				System.out.println("It's a tie");
+			System.out.println("Enter 1 to play another game");
+			System.out.println("Enter 9 to exit");
+			int p = sc.nextInt();
+			if(p == 1) {
+				check = true;
 			}
+			else {
+				check = false;
+			}
+			board = createBoard();
+			player = ' ';
+			computer = ' ';
+			positionsPlayer.clear();
+			positionsComputer.clear();
 		}
 	}
 }
