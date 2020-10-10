@@ -115,6 +115,22 @@ public class TicTacToe {
 		else return 0;
 	}
 	
+	public static int cornerMove() {
+		if(fillMark(1)) {
+			return 1;
+		}
+		else if(fillMark(3)) {
+			return 3;
+		}
+		else if(fillMark(7)) {
+			return 7;
+		}
+		else if(fillMark(9)) {
+			return 9;
+		}
+		else return 0;
+	}
+	
 	public static void main(String[] args) {
 		System.out.println("Welcome to Tic Tac Toe Game!!!");
 		
@@ -175,7 +191,10 @@ public class TicTacToe {
 						if(j >= 1) {
 							int a = getWinMove();
 							if(a == 0) {
-								a = ((int)Math.floor(Math.random() * 10) % 9) + 1;
+								a = cornerMove();
+								if(a == 0) {
+									a = ((int)Math.floor(Math.random() * 10) % 9) + 1;
+								}
 							}
 							board[a] = computer;
 							positionsComputer.add(a);
@@ -234,7 +253,10 @@ public class TicTacToe {
 						if(j > 1) {
 							int a = getWinMove();
 							if(a == 0) {
-								a = ((int)Math.floor(Math.random() * 10) % 9) + 1;
+								a = cornerMove();
+								if(a == 0) {
+									a = ((int)Math.floor(Math.random() * 10) % 9) + 1;
+								}
 							}
 							board[a] = computer;
 							positionsComputer.add(a);
